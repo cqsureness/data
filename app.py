@@ -16,7 +16,7 @@ data_source_list = [
     
     {
         "name": "tushare（实时金融数据）",
-        "url": "https://https://tushare.pro/",
+        "url": "https://tushare.pro/",
         "desc": "中国上市公司财务报表数据、价格数据、指标数据等",
         "note": "上市公司年度、月度、每日指标"
     },    
