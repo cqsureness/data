@@ -8,7 +8,7 @@ Created on Wed Oct 21 14:28:09 2026
 import streamlit as st
 
 st.set_page_config(page_title="产业研究数据导航台", layout="wide")
-st.title("📊 产业竞争力 & 工业机器人研究 - 数据导航")
+st.title("📊 金融数据、宏观数据、产业数据 & 工业机器人研究 - 数据导航")
 st.markdown("> 用于定期下载：UNIDO工业统计、IFR工业机器人、世界银行等数据库，点击跳转官网")
 
 # 整理你研究要用的数据源
