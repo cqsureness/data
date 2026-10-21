@@ -13,6 +13,13 @@ st.markdown("> 用于定期下载：UNIDO工业统计、IFR工业机器人、世
 
 # 整理你研究要用的数据源
 data_source_list = [
+    
+    {
+        "name": "tushare（实时金融数据）",
+        "url": "https://https://tushare.pro/",
+        "desc": "中国上市公司财务报表数据、价格数据、指标数据等",
+        "note": "上市公司年度、月度、每日指标"
+    },    
     {
         "name": "UNIDO 工业统计数据库",
         "url": "https://stat.unido.org/",
@@ -43,6 +50,7 @@ data_source_list = [
         "desc": "中国工业分行业产值、就业、固定资产投资",
         "note": "国内年度、月度工业指标"
     }
+
 ]
 
 # 循环渲染每一行
