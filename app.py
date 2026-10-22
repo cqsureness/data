@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Oct 21 14:28:09 2026
-
-@author: WSAQ
-"""
-
 import streamlit as st
 
 st.set_page_config(page_title="产业研究数据导航台", layout="wide")
@@ -13,13 +6,12 @@ st.markdown("> 用于定期下载：UNIDO工业统计、IFR工业机器人、世
 
 # 整理你研究要用的数据源
 data_source_list = [
-    
     {
         "name": "tushare（实时金融数据）",
         "url": "https://tushare.pro/",
         "desc": "中国上市公司财务报表数据、价格数据、指标数据等",
         "note": "上市公司年度、月度、每日指标"
-    },    
+    },
     {
         "name": "UNIDO 工业统计数据库",
         "url": "https://stat.unido.org/",
@@ -50,20 +42,28 @@ data_source_list = [
         "desc": "中国工业分行业产值、就业、固定资产投资",
         "note": "国内年度、月度工业指标"
     }
-
 ]
 
-# 循环渲染每一行
-for item in data_source_list:
-    with st.container(border=True):
-        col1, col2 = st.columns([0.75, 0.25])
-        with col1:
-            st.subheader(item["name"])
-            st.write(item["desc"])
-            st.caption(f"备注：{item['note']}")
-        with col2:
-            # 跳转按钮，新标签页打开官网
-            st.link_button("🔗 前往官网下载", item["url"], type="primary")
+# ========== 三列布局核心代码 ==========
+# 每一行生成3张卡片，自动换行
+for i in range(0, len(data_source_list), 3):
+    # 创建一行三列，宽度均等
+    cols = st.columns(3, vertical_alignment="top")
+    # 遍历当前行的3个位置
+    for j in range(3):
+        idx = i + j
+        if idx < len(data_source_list):
+            item = data_source_list[idx]
+            with cols[j]:
+                with st.container(border=True):
+                    # 卡片内部依然保持文字+按钮两栏布局
+                    col_text, col_btn = st.columns([0.75, 0.25])
+                    with col_text:
+                        st.subheader(item["name"])
+                        st.write(item["desc"])
+                        st.caption(f"备注：{item['note']}")
+                    with col_btn:
+                        st.link_button("🔗 前往官网下载", item["url"], type="primary")
 
 st.divider()
 st.subheader("📌 配套辅助表（你后面会用到）")
