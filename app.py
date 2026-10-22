@@ -33,7 +33,7 @@ data_source_list = [
     {
         "name": "OECD 产业统计",
         "url": "https://stats.oecd.org/",
-        "desc": "发达国家细分产业、资本投入、劳动数据，适合对比",
+        "desc": "经济合作组织中国家的细分产业、资本投入、劳动数据，适合对比",
         "note": "大部分指标免费"
     },
     {
@@ -41,7 +41,17 @@ data_source_list = [
         "url": "https://data.stats.gov.cn/",
         "desc": "中国工业分行业产值、就业、固定资产投资",
         "note": "国内年度、月度工业指标"
+    },
+    {
+        "name": "ADB MRIO（亚洲开发银行多区域投入产出）",
+        "url": "hhttps://data.adb.org/",
+        "desc": "亚行数据库是亚行所有公共数据门户。",
+        "note": "国年度、月度数据指标"
     }
+    
+    
+    
+    
 ]
 
 # ========== 三列布局核心代码 ==========
