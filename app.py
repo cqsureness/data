@@ -13,6 +13,24 @@ data_source_list = [
         "note": "上市公司年度、月度、每日指标"
     },
     {
+        "name": "CSMAR（金融研究数据）",
+        "url": "https://data.csmar.com/",
+        "desc": "中国宏观经济、产业经济和企业微观数据平台",
+        "note": "国内年度、月度工业指标"
+    },    
+    {
+        "name": "EPS数据平台",
+        "url": "https://olap.epsnet.com.cn/",
+        "desc": "中国社会经济研究基础平台：农业数据、三农数据、科技数据、旅游数据、",
+        "note": "免费摘要，细分面板可校内图书馆采购权限导出"
+    },    
+    {
+        "name": "国家统计局（国内工业数据）",
+        "url": "https://data.stats.gov.cn/",
+        "desc": "中国工业分行业产值、就业、固定资产投资",
+        "note": "国内年度、月度工业指标"
+    },     
+    {
         "name": "UNIDO 工业统计数据库",
         "url": "https://stat.unido.org/",
         "desc": "INDSTAT / IDSB / CIP / SDG9；增加值、就业、固定资本形成、进出口（ISIC Rev.4）",
@@ -36,15 +54,10 @@ data_source_list = [
         "desc": "经济合作组织中国家的细分产业、资本投入、劳动数据，适合对比",
         "note": "大部分指标免费"
     },
-    {
-        "name": "国家统计局（国内工业数据）",
-        "url": "https://data.stats.gov.cn/",
-        "desc": "中国工业分行业产值、就业、固定资产投资",
-        "note": "国内年度、月度工业指标"
-    },
+
     {
         "name": "ADB MRIO（亚洲开发银行多区域投入产出）",
-        "url": "hhttps://data.adb.org/",
+        "url": "https://data.adb.org/",
         "desc": "亚行数据库是亚行所有公共数据门户。",
         "note": "国年度、月度数据指标"
     }
