@@ -1,11 +1,17 @@
 import streamlit as st
 
-st.set_page_config(page_title="产业研究数据导航台", layout="wide")
+st.set_page_config(page_title="经济研究数据导航", layout="wide")
 st.title("📊 金融数据、宏观数据、产业数据 & 工业机器人研究 - 数据导航")
 st.markdown("> 用于定期下载：UNIDO工业统计、IFR工业机器人、世界银行等数据库，点击跳转官网")
 
 # 整理你研究要用的数据源
 data_source_list = [
+    {
+        "name": "期刊数据库入口",
+        "url": "https://lib.swu.edu.cn/libweb/digitalDatabase/",
+        "desc": "CNKI,EBSCO,Elsevier, Web of Science, Wiley",
+        "note": "各类主要期刊数据库"
+    },    
     {
         "name": "tushare（实时金融数据）",
         "url": "https://tushare.pro/",
