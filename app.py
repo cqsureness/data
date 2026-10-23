@@ -1,7 +1,7 @@
 import streamlit as st
 
 st.set_page_config(page_title="经济研究数据导航", layout="wide")
-st.title("📊 金融数据、宏观数据、产业数据 & 工业机器人研究 - 数据导航")
+st.title("📊 宏观数据、产业数据、企业数据、金融数据、科技数据、三农数据 & 工业机器人研究 - 数据导航")
 st.markdown("> 用于定期下载：UNIDO工业统计、IFR工业机器人、世界银行等数据库，点击跳转官网")
 
 # 整理你研究要用的数据源
