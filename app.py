@@ -66,6 +66,13 @@ data_source_list = [
         "url": "https://data.adb.org/",
         "desc": "亚行数据库是亚行所有公共数据门户。",
         "note": "国年度、月度数据指标"
+    },
+
+    {
+        "name": "cnopendata（中国开放数据平台）",
+        "url": "https://www.cnopendata.com/",
+        "desc": "覆盖经济、金融、会计。",
+        "note": "国年度、月度数据指标"
     }
     
     
