@@ -1,4 +1,8 @@
 import streamlit as st
+import json as _json
+import os as _os
+from urllib.request import urlopen, Request as _Req
+from urllib.error import URLError, HTTPError
 
 st.set_page_config(page_title="经济研究数据导航", layout="wide")
 st.title("📊 宏观数据、产业数据、企业数据、金融数据、科技数据、三农数据 - 数据导航")
@@ -105,3 +109,77 @@ st.divider()
 st.subheader("📌 配套辅助表（你后面会用到）")
 st.markdown("- IFR行业 ↔ UNIDO ISIC Rev.4 行业匹配对照表（本地Excel）")
 st.markdown("- 指标清单：固定资本形成GFCF、机器人密度、增加值、就业、出口")
+
+# ========== 右下角访问量统计 ==========
+# 计数语义：每次「新会话」(约等于一次浏览器访问) 计入一次，避免 Streamlit 脚本
+# 重跑导致重复 +1。在线计数器优先，失败回退到本地文件(仅兜底，Streamlit Cloud
+# 的文件系统不持久，真实计数以在线服务为准)。
+_COUNTER_NS = "economic-data-nav"
+_COUNTER_KEY = "home-visits"
+
+
+def _get_visit_count():
+    """每个会话只调用一次：先试在线计数器，失败回退本地文件计数。"""
+    if "visit_count" in st.session_state:
+        return st.session_state.visit_count
+
+    count = None
+    # 1) 在线计数器 CountAPI（无需密钥，按 命名空间/键 自动建表并 +1）
+    try:
+        url = f"https://api.countapi.xyz/hit/{_COUNTER_NS}/{_COUNTER_KEY}"
+        req = _Req(url, headers={"User-Agent": "Mozilla/5.0"})
+        with urlopen(req, timeout=6) as resp:
+            data = _json.loads(resp.read().decode("utf-8"))
+        count = int(data.get("value", 0))
+    except Exception:
+        count = None
+
+    # 2) 回退：本地文件计数（Streamlit Cloud 不持久，仅作兜底）
+    if count is None:
+        try:
+            path = _os.path.join(_os.path.dirname(__file__), "visit_count.json")
+            if _os.path.exists(path):
+                with open(path, encoding="utf-8") as f:
+                    count = _json.load(f).get("count", 0)
+            else:
+                count = 0
+            count += 1
+            with open(path, "w", encoding="utf-8") as f:
+                _json.dump({"count": count}, f)
+        except Exception:
+            count = None
+
+    st.session_state.visit_count = count
+    return count
+
+
+def render_visit_counter():
+    count = _get_visit_count()
+    if count is None:
+        return
+    st.markdown(
+        f"""
+        <style>
+        .wb-visit-counter {{
+            position: fixed;
+            right: 14px;
+            bottom: 14px;
+            z-index: 9999;
+            background: rgba(255, 255, 255, 0.95);
+            color: #444;
+            border: 1px solid #e3e3e3;
+            border-radius: 999px;
+            padding: 5px 14px;
+            font-size: 13px;
+            line-height: 1.4;
+            box-shadow: 0 1px 6px rgba(0, 0, 0, 0.10);
+            font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+        }}
+        </style>
+        <div class="wb-visit-counter">👀 访问量 <b>{count}</b></div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
+render_visit_counter()
